@@ -10,8 +10,8 @@ node_modules/
 .env.local
 .env.*.local
 
-# .env* - environment variable files that may contain sensitive data
-.env*
+# .env - environment variable files that may contain sensitive data
+.env
 
 # Log files and directories
 npm-debug.log*
