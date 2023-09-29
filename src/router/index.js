@@ -1,19 +1,16 @@
-import Vue from 'vue';
-import App from '@/App.vue';
 import { createRouter, createWebHistory } from 'vue-router';
 
-// Import your page components
-import AboutPage from '../pages/AboutPage.vue';
-import UserRegistration from '../pages/UserRegistration.vue';
-import UserAuthorization from '../pages/UserAuthorization.vue';
-import ListOfUsers from '../pages/ListOfUsers.vue';
-import UserProfile from '../pages/UserProfile.vue';
-import ListOfCompanies from '../pages/ListOfCompanies.vue';
-import CompanyProfile from '../pages/CompanyProfile.vue';
-
-Vue.use(VueRouter);
+import HomePage from '@/views/HomePage.vue';
+import AboutPage from '@/views/AboutPage.vue';
+import UserRegistration from '@/views/UserRegistration.vue';
+import UserAuthorization from '@/views/UserAuthorization.vue';
+import ListOfUsers from '@/views/ListOfUsers.vue';
+import UserProfile from '@/views/UserProfile.vue';
+import ListOfCompanies from '@/views/ListOfCompanies.vue';
+import CompanyProfile from '@/views/CompanyProfile.vue';
 
 const routes = [
+  { path: '/', component: HomePage },
   { path: '/about', component: AboutPage },
   { path: '/user-registration', component: UserRegistration },
   { path: '/user-authorization', component: UserAuthorization },
@@ -21,15 +18,12 @@ const routes = [
   { path: '/user-profile', component: UserProfile },
   { path: '/list-of-companies', component: ListOfCompanies },
   { path: '/company-profile', component: CompanyProfile },
+  // You can add more routes for other pages here
 ];
 
-const router = new VueRouter({
-  routes,
-  mode: 'history' // This enables clean URLs without hashes
+const router = createRouter({
+  history: createWebHistory(),
+  routes
 });
 
-new Vue({
-  el: '#app',
-  router,
-  render: h => h(App)
-});
+export default router;

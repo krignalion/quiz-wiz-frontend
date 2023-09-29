@@ -1,14 +1,50 @@
 <template>
+  <div id="app">
+    <router-view></router-view>
+    <universal-modal v-if="isModalOpen" @close="closeModal">
+      <p>This is the content of the universal modal.</p>
+    </universal-modal>
+  </div>
+</template>
+
+<script>
+import UniversalModal from '@/components/ModalWindow.vue';
+
+export default {
+  data() {
+    return {
+      isModalOpen: false
+    };
+  },
+  methods: {
+    openModal() {
+      this.isModalOpen = true;
+    },
+    closeModal() {
+      this.isModalOpen = false;
+    }
+  },
+  components: {
+    UniversalModal
+  }
+};
+</script>
+
+<style>
+/* Add your global CSS styles here */
+</style>
+
+
+<!-- <template>
   <div>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
-// import Vue from 'vue';
 import { createRouter, createWebHistory } from 'vue-router';
 
-// Vue.use(VueRouter);
+
 
 // Подключение макетных страниц
 import About from './pages/AboutPage.vue';
@@ -30,11 +66,6 @@ const routes = [
   // Добавьте другие маршруты здесь
 ];
 
-// const router = new VueRouter({
-//   mode: 'history',
-//   base: process.env.BASE_URL,
-//   routes
-// });
 
 const router = createRouter({
   history: createWebHistory(),
@@ -49,4 +80,4 @@ export default {
 
 <style>
 /* Стили здесь, если требуется */
-</style>
+</style> -->
