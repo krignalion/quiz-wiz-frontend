@@ -5,7 +5,7 @@ import router from './router';
 const app = createApp(App);
 app.use(router);
 
-// Указание стартового маршрута
-router.replace('/');
+// Specify the starting route
+// router.replace('/');
 
 app.mount('#app');
