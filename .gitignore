@@ -1,0 +1,85 @@
+# Exclude node_modules as they can be large and should not be in the repository
+node_modules/
+
+# Exclude build-related files
+/dist/
+/.sass-cache/
+/.eslintcache
+
+# Exclude configuration files containing personal settings
+.env.local
+.env.*.local
+
+# .env - environment variable files that may contain sensitive data
+.env
+
+# Log files and directories
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+logs
+*.log
+
+# Exclude files and directories created by web servers
+.PDS_Store
+Thumbs.db
+
+# Exclude .vscode created by Visual Studio Code
+.vscode/
+
+# Exclude package-lock.json used by npm
+package-lock.json
+
+# Exclude yarn.lock used by Yarn
+yarn.lock
+
+# Exclude .idea created by IntelliJ
+.idea/
+
+# Exclude IntelliJ IDEA project files
+*.iml
+
+# Exclude files and directories created by Sublime Text
+.sublime-project
+.sublime-workspace
+
+# Exclude configuration files created by Eclipse
+.project
+.classpath
+.settings/
+
+# Exclude project files created by NetBeans
+/nbproject/
+
+# Exclude PhpStorm configuration files
+.idea/
+*.sublime-workspace
+.idea/
+
+# Exclude project files created by command line
+.sass-cache/
+.sass-cache/
+
+# Exclude macOS configuration files
+.DS_Store
+
+# Exclude Windows configuration files
+Thumbs.db
+Desktop.ini
+
+# Exclude Linux configuration files
+*~
+
+# Exclude configuration files created by test runners
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Exclude compiler-generated files
+*.gcno
+*.gcda
+*.gcov
+
+# Exclude test-related folders
+/coverage/
+/tests/e2e/reports/
