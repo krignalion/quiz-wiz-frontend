@@ -1,0 +1,40 @@
+# Exclude temporary files and directories
+node_modules
+npm-debug.log
+
+# Exclude version control system files
+.git
+.gitignore
+
+# Exclude IDE-specific files
+.vscode
+
+# Exclude generated build files
+/dist
+
+# Exclude Babel mappings and cache
+.babelrc
+.babelrc.js
+.babelrc.json
+.babelrc-lock.json
+.babel.config.js
+
+# Exclude test configuration files
+.karma.js
+.karma.conf.js
+.karma.conf.coffee
+
+# Exclude Jest configuration files
+.jestrc
+.jestrc.js
+.jestrc.json
+
+# Exclude Parcel configuration files
+.parcelrc
+.parcelrc.js
+.parcelrc.json
+
+# Exclude Rollup configuration files
+.rollup.config.js
+.rollup.config.mjs
+.rollup.config.cjs
