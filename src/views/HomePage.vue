@@ -7,12 +7,15 @@
   </div>
   
   <div class="page">
-
-<button сlass="show-modal-button" @click="showModal">Show modal window</button>
-
-<modal-window ref="modal"></modal-window>
-
-</div>
+    <button сlass="show-modal-button" @click="showModal">Show modal window</button>
+    <modal-window ref="modal"></modal-window>
+  </div>
+  <p></p>
+  <div>
+    <nav>
+      <router-link to="/test-vuex">Test Vuex</router-link>
+    </nav>
+  </div>
 </template>
 
 <script>

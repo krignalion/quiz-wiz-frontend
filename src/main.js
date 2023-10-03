@@ -3,6 +3,8 @@ import App from './App.vue';
 import router from './router';
 import { createI18n } from 'vue-i18n';
 import messages from './locales';
+// import { createStore } from 'vuex';
+import store from './store/store.js';
 
 const defaultLanguage = 'en';
 const savedLanguage = localStorage.getItem('language');
@@ -15,6 +17,7 @@ const i18n = createI18n({
 });
 
 const app = createApp(App);
+app.use(store);
 app.use(i18n);
 app.use(router);
 

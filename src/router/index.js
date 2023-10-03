@@ -8,6 +8,7 @@ import ListOfUsers from '@/views/ListOfUsers.vue';
 import UserProfile from '@/views/UserProfile.vue';
 import ListOfCompanies from '@/views/ListOfCompanies.vue';
 import CompanyProfile from '@/views/CompanyProfile.vue';
+import TestVuex from '@/views/TestVuex.vue';
 
 const routes = [
   { path: '/', component: HomePage },
@@ -18,6 +19,7 @@ const routes = [
   { path: '/user-profile', component: UserProfile },
   { path: '/list-of-companies', component: ListOfCompanies },
   { path: '/company-profile', component: CompanyProfile },
+  { path: '/test-vuex', component: TestVuex },
   // You can add more routes for other pages here
 ];
 
