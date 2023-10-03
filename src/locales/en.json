@@ -1,6 +1,5 @@
 {
-  "hello": "Hello",
-  "welcome": "Welcome to the app",
+  "welcomeMessage": "Welcome to frontent-internship!",
   "home": "Home",
   "about": "About us",
   "user profile": "User Profile",
