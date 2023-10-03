@@ -26,13 +26,13 @@ export default {
   components: {
     HeaderSection,
     ModalWindow
-      },
-      methods: {
-          showModal: function () {
-              this.$refs.modal.show = true
-          }
-      },
+  },
+  methods: {
+    showModal: function () {
+      this.$refs.modal.show = true
+    }
   }
+}
 </script>
 
 
