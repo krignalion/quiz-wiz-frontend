@@ -2,7 +2,7 @@
 <template>
   <div>
     <HeaderSection />
-    <h1>Welcome to frontent-internship!</h1>
+    <h1>{{$t('welcomeMessage')}}</h1>
     <p>Hello there, this is the start page of my project.</p>
   </div>
   
