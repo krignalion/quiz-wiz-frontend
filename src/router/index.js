@@ -1,25 +1,28 @@
 import { createRouter, createWebHistory } from 'vue-router';
-
 import HomePage from '@/views/HomePage.vue';
-import AboutPage from '@/views/AboutPage.vue';
-import UserRegistration from '@/views/UserRegistration.vue';
-import UserAuthorization from '@/views/UserAuthorization.vue';
-import ListOfUsers from '@/views/ListOfUsers.vue';
-import UserProfile from '@/views/UserProfile.vue';
-import ListOfCompanies from '@/views/ListOfCompanies.vue';
-import CompanyProfile from '@/views/CompanyProfile.vue';
 
-const routes = [
-  { path: '/', component: HomePage },
-  { path: '/about', component: AboutPage },
-  { path: '/user-registration', component: UserRegistration },
-  { path: '/user-authorization', component: UserAuthorization },
-  { path: '/list-of-users', component: ListOfUsers },
-  { path: '/user-profile', component: UserProfile },
-  { path: '/list-of-companies', component: ListOfCompanies },
-  { path: '/company-profile', component: CompanyProfile },
-  // You can add more routes for other pages here
-];
+const requireComponent = require.context('@/views', true, /\.vue$/);
+
+const routes = requireComponent.keys().map(fileName => {
+  const componentConfig = requireComponent(fileName);
+  const componentName = fileName
+    .split('/')
+    .pop()
+    .replace(/\.\w+$/, '');
+
+// Convert PageName to page-name format
+  const formattedPath = componentName
+    .replace(/([a-z])([A-Z])/g, '$1-$2')
+    .toLowerCase();
+
+  return {
+    path: `/${formattedPath}`,
+    component: componentConfig.default || componentConfig
+  };
+});
+
+// Add a separate route for the main page
+routes.push({ path: '/', component: HomePage });
 
 const router = createRouter({
   history: createWebHistory(),

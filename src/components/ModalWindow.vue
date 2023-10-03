@@ -1,7 +1,9 @@
 <template>
     <div v-if="show" class="modal-shadow" @click.self="closeModal">
         <div class="modal">
-            <div class="modal-close" @click="closeModal">&#10006;</div>
+            <div class="modal-close" @click="closeModal">
+                <i class="fas fa-times"></i>
+            </div>
             <slot name="title">
                 <h3 class="modal-title">Heading</h3>
             </slot>
@@ -22,19 +24,21 @@
 </template>
  
 <script>
-    export default {
-        name: "ModalWindow",
-        data: function () {
-            return {
-                show: false
-            }
-        },
-        methods: {
-            closeModal: function () {
-                this.show = false
-            }
+import '@fortawesome/fontawesome-free/css/all.css';
+
+export default {
+    name: "ModalWindow",
+    data() {
+        return {
+            show: false
+        };
+    },
+    methods: {
+        closeModal() {
+            this.show = false;
         }
     }
+};
 </script>
  
 <style scoped

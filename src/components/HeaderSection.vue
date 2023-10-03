@@ -3,7 +3,7 @@
   <div class="header-section">
     <nav>
       <router-link to="/">Home</router-link>
-      <router-link to="/about">About</router-link>
+      <router-link to="/about-us">About</router-link>
       <router-link to="/user-profile">User Profile</router-link>
       <router-link to="/user-authorization">Authorization</router-link>
      <!--Add links to other pages here -->

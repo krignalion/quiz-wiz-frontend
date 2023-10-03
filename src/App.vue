@@ -11,6 +11,10 @@
 import UniversalModal from '@/components/ModalWindow.vue';
 
 export default {
+  name: 'App',
+  components: {
+    UniversalModal
+  },
   data() {
     return {
       isModalOpen: false
@@ -23,9 +27,6 @@ export default {
     closeModal() {
       this.isModalOpen = false;
     }
-  },
-  components: {
-    UniversalModal
   }
 };
 </script>
