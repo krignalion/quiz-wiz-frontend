@@ -3,7 +3,7 @@
   <div class="header-section">
     <nav>
       <router-link to="/">{{$t('home')}}</router-link>
-      <router-link to="/about">{{$t('about')}}</router-link>
+      <router-link to="/about-us">{{$t('about')}}</router-link>
       <router-link to="/user-profile">{{$t('user profile')}}</router-link>
       <router-link to="/user-authorization">{{$t('Authorization')}}</router-link>
      <!--Add links to other pages here -->
