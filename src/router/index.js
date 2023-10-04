@@ -1,17 +1,31 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import Home from '../views/Home.vue';
+import HomePage from '@/views/HomePage.vue';
 
-const routes = [
-  {
-    path: '/',
-    name: 'Home',
-    component: Home
-  },
-  // ... other routes
-];
+const requireComponent = require.context('@/views', true, /\.vue$/);
+
+const routes = requireComponent.keys().map(fileName => {
+  const componentConfig = requireComponent(fileName);
+  const componentName = fileName
+    .split('/')
+    .pop()
+    .replace(/\.\w+$/, '');
+
+// Convert PageName to page-name format
+  const formattedPath = componentName
+    .replace(/([a-z])([A-Z])/g, '$1-$2')
+    .toLowerCase();
+
+  return {
+    path: `/${formattedPath}`,
+    component: componentConfig.default || componentConfig
+  };
+});
+
+// Add a separate route for the main page
+routes.push({ path: '/', component: HomePage });
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  history: createWebHistory(),
   routes
 });
 
