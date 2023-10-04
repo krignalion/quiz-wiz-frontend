@@ -16,16 +16,22 @@
       <router-link to="/test-vuex">Test Vuex</router-link>
     </nav>
   </div>
+  <p></p>
+  <div>
+    <HealthCheck />
+  </div>
 </template>
 
 <script>
 import HeaderSection from "@/components/HeaderSection.vue";
 import ModalWindow from "@/components/ModalWindow.vue";
+import HealthCheck from '@/components/HealthCheck.vue';
 
 export default {
   components: {
     HeaderSection,
-    ModalWindow
+    ModalWindow,
+    HealthCheck
       },
       methods: {
           showModal: function () {
