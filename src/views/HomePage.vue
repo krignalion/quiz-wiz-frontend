@@ -2,11 +2,20 @@
 <template>
   <div>
     <HeaderSection />
-    <h1>Welcome to frontent-internship!</h1>
+    <h1>{{$t('welcomeMessage')}}</h1>
     <p>Hello there, this is the start page of my project.</p>
   </div>
   
   <div class="page">
+    <button сlass="show-modal-button" @click="showModal">Show modal window</button>
+    <modal-window ref="modal"></modal-window>
+  </div>
+  <p></p>
+  <div>
+    <nav>
+      <router-link to="/test-vuex">Test Vuex</router-link>
+    </nav>
+  </div>
     <button сlass="show-modal-button" @click="showModal">Show modal window</button>
     <modal-window ref="modal"></modal-window>
   </div>
