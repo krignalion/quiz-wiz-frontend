@@ -16,15 +16,6 @@
       <router-link to="/test-vuex">Test Vuex</router-link>
     </nav>
   </div>
-    <button сlass="show-modal-button" @click="showModal">Show modal window</button>
-    <modal-window ref="modal"></modal-window>
-  </div>
-  <p></p>
-  <div>
-    <nav>
-      <router-link to="/test-vuex">Test Vuex</router-link>
-    </nav>
-  </div>
   <p></p>
   <div>
     <HealthCheck />

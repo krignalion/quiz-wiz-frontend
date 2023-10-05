@@ -24,15 +24,13 @@ export default {
     };
   },
   methods: {
-    openModal() {
-      this.isModalOpen = true;
-    },
     closeModal() {
       this.isModalOpen = false;
     }
   }
 };
 </script>
+
 
 <style>
 /* Add your global CSS styles here */
