@@ -2,10 +2,10 @@
 <template>
   <div class="header-section">
     <nav>
-      <router-link to="/">Home</router-link>
-      <router-link to="/about-us">About</router-link>
-      <router-link to="/user-profile">User Profile</router-link>
-      <router-link to="/user-authorization">Authorization</router-link>
+      <router-link to="/">{{$t('home')}}</router-link>
+      <router-link to="/about">{{$t('about')}}</router-link>
+      <router-link to="/user-profile">{{$t('user profile')}}</router-link>
+      <router-link to="/user-authorization">{{$t('Authorization')}}</router-link>
      <!--Add links to other pages here -->
     </nav>
   </div>

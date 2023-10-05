@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <LanguageSelector />
     <router-view></router-view>
     <universal-modal v-if="isModalOpen" @close="closeModal">
       <p>This is the content of the universal modal.</p>
@@ -9,11 +10,13 @@
 
 <script>
 import UniversalModal from '@/components/ModalWindow.vue';
+import LanguageSelector from './components/LanguageSelector.vue';
 
 export default {
   name: 'App',
   components: {
-    UniversalModal
+    UniversalModal,
+    LanguageSelector
   },
   data() {
     return {
