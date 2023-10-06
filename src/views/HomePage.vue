@@ -7,29 +7,38 @@
   </div>
   
   <div class="page">
-
-<button сlass="show-modal-button" @click="showModal">Show modal window</button>
-
-<modal-window ref="modal"></modal-window>
-
-</div>
+    <button сlass="show-modal-button" @click="showModal">Show modal window</button>
+    <modal-window ref="modal"></modal-window>
+  </div>
+  <p></p>
+  <div>
+    <nav>
+      <router-link to="/test-vuex">Test Vuex</router-link>
+    </nav>
+  </div>
+  <p></p>
+  <div>
+    <HealthCheck />
+  </div>
 </template>
 
 <script>
 import HeaderSection from "@/components/HeaderSection.vue";
 import ModalWindow from "@/components/ModalWindow.vue";
+import HealthCheck from '@/components/HealthCheck.vue';
 
 export default {
   components: {
     HeaderSection,
-    ModalWindow
-  },
-  methods: {
-    showModal: function () {
-      this.$refs.modal.show = true
-    }
+    ModalWindow,
+    HealthCheck
+      },
+      methods: {
+          showModal: function () {
+              this.$refs.modal.show = true
+          }
+      },
   }
-}
 </script>
 
 
