@@ -16,7 +16,7 @@ export default {
   name: 'App',
   components: {
     UniversalModal,
-    LanguageSelector
+    LanguageSelector,
   },
   data() {
     return {
@@ -27,10 +27,15 @@ export default {
     closeModal() {
       this.isModalOpen = false;
     }
+  },
+  created() {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    if (currentUser) {
+      this.$store.dispatch('setCurrentUser', currentUser);
+    }
   }
 };
 </script>
-
 
 <style>
 /* Add your global CSS styles here */

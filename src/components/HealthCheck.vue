@@ -20,11 +20,11 @@ export default {
     };
   },
   mounted() {
-    // Вызов эндпоинта проверки здоровья бэкенда
-    axiosInstance.get('/health-check-view/')
+    // Call the backend health check endpoint
+    axiosInstance.get('')
       .then(response => {
-        console.log('Response status:', response.status); // Статус ответа
-        console.log('Response data:', response.data); // Данные, возвращенные сервером
+        console.log('Response status:', response.status); // Response status
+        console.log('Response data:', response.data); // Data returned by the server
         this.isBackendHealthy = true;
       })
       .catch(error => {

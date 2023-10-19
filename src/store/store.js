@@ -1,4 +1,5 @@
 import { createStore } from 'vuex';
+import userModule from './modules/user';
 
 const store = createStore({
   state: {
@@ -16,6 +17,9 @@ const store = createStore({
     setTestString: (state, newString) => {
       state.testString = newString;
     }
+  },
+  modules: {
+    user: userModule
   }
 });
 

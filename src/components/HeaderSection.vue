@@ -1,25 +1,43 @@
-<!-- HeaderSection.vue -->
 <template>
   <div class="header-section">
     <nav>
       <router-link to="/">{{$t('home')}}</router-link>
       <router-link to="/about-us">{{$t('about')}}</router-link>
       <router-link to="/user-profile">{{$t('user profile')}}</router-link>
-      <router-link to="/user-authorization">{{$t('Authorization')}}</router-link>
-     <!--Add links to other pages here -->
+      <div>
+        <router-link v-if="!currentUser" to="/user-authorization">{{$t('Authorization')}}</router-link>
+        <span v-if="!currentUser"> | </span>
+        <router-link v-if="!currentUser" to="/user-registration">Registration</router-link>
+      </div>
+        <div v-if="currentUser"> 
+        {{ currentUser.username }}<button @click="logout">Logout</button>
+      </div>
     </nav>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
+
 export default {
-  name: 'HeaderSection'
-// You can add logic here if necessary
+  computed: {
+    ...mapGetters(['currentUser']),
+  },
+  name: 'HeaderSection',
+  methods: {
+    logout() {
+      localStorage.removeItem('jwtToken');
+      localStorage.removeItem('currentUser');
+      this.$store.dispatch('clearCurrentUser');
+      this.isAuthenticated = false;
+      this.$router.push('/');
+    },
+  }
 }
 </script>
 
 <style scoped>
-/* Styles for your header */
 .header-section {
   background-color: #f0f0f0;
   padding: 10px;
