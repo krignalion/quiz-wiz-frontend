@@ -9,6 +9,7 @@
 
       <button type="submit">Login</button>
     </form>
+    <div v-if="loginError" style="color: red;">{{ loginError }}</div>
   </div>
 </template>
 
