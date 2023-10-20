@@ -1,27 +1,27 @@
 const state = {
-  currentUser: null,
+  currentUsername: null, 
 };
 
 const mutations = {
-  setCurrentUser(state, user) {
-    state.currentUser = user;
+  setCurrentUsername(state, username) {
+    state.currentUsername = username;
   },
-  clearCurrentUser(state) {
-    state.currentUser = null;
+  clearCurrentUsername(state) {
+    state.currentUsername = null;
   },
 };
 
 const actions = {
-  setCurrentUser({ commit }, user) {
-    commit('setCurrentUser', user);
+  setCurrentUsername({ commit }, username) { 
+    commit('setCurrentUsername', username);
   },
-  clearCurrentUser({ commit }) {
-    commit('clearCurrentUser');
+  clearCurrentUsername({ commit }) {
+    commit('clearCurrentUsername');
   },
 };
 
 const getters = {
-  currentUser: state => state.currentUser,
+  currentUsername: state => state.currentUsername, 
 };
 
 export default {

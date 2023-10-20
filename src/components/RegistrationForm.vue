@@ -11,7 +11,7 @@
 
       <div class="form-group">
         <label for="email">Email:</label>
-        <input v-model="email" type="email" id="email" @blur="validateEmail" />
+        <input v-model="email" id="email" @blur="validateEmail" />
         <span v-if="emailTouched && !isEmailValid" class="error">Invalid email</span>
       </div>
 
@@ -56,7 +56,7 @@ export default {
   },
   computed: {
     isEmailValid() {
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,254}$/;
+      const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,254}$/;
       return emailRegex.test(this.email);
     },
     isUsernameValid() {

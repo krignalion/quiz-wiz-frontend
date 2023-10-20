@@ -29,9 +29,9 @@ export default {
     const jwtToken = localStorage.getItem('jwtToken');
     if (jwtToken) {
       this.isAuthenticated = true;
-      const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-      if (currentUser) {
-        this.$store.dispatch('setCurrentUser', currentUser);
+      const currentUsername = localStorage.getItem('currentUsername');
+      if (currentUsername) {
+        this.$store.dispatch('setCurrentUsername', currentUsername);
       }
     }
   },
@@ -53,12 +53,9 @@ export default {
           this.loginError = null;
           this.$router.push('/');
 
-          const currentUser = {
-            username: this.username,
-            email: response.data.email,
-          };
-          this.$store.dispatch('setCurrentUser', currentUser);
-          localStorage.setItem('currentUser', JSON.stringify(currentUser));
+          const currentUsername = this.username; 
+          this.$store.dispatch('setCurrentUsername', currentUsername); 
+          localStorage.setItem('currentUsername', currentUsername);
         })
         .catch(error => {
           console.error('Login failed:', error.response ? error.response.data : error.message);

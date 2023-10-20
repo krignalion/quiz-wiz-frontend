@@ -4,32 +4,33 @@
       <router-link to="/">{{$t('home')}}</router-link>
       <router-link to="/about-us">{{$t('about')}}</router-link>
       <router-link to="/user-profile">{{$t('user profile')}}</router-link>
-      <div>
-        <router-link v-if="!currentUser" to="/user-authorization">{{$t('Authorization')}}</router-link>
-        <span v-if="!currentUser"> | </span>
-        <router-link v-if="!currentUser" to="/user-registration">Registration</router-link>
+      <div v-if="!currentUsername">
+        <router-link to="/user-authorization">{{$t('Authorization')}}</router-link>
+        <span> | </span>
+        <router-link to="/user-registration">{{$t('Registration')}}</router-link>
       </div>
-        <div v-if="currentUser"> 
-        {{ currentUser.username }}<button @click="logout">Logout</button>
+      <div v-if="currentUsername">
+        {{ currentUsername }}<button @click="logout">Logout</button>
       </div>
     </nav>
   </div>
 </template>
 
+
+
 <script>
 import { mapGetters } from 'vuex';
 
-
 export default {
-  computed: {
-    ...mapGetters(['currentUser']),
-  },
   name: 'HeaderSection',
+  computed: {
+    ...mapGetters(['currentUsername']),
+  },
   methods: {
     logout() {
       localStorage.removeItem('jwtToken');
-      localStorage.removeItem('currentUser');
-      this.$store.dispatch('clearCurrentUser');
+      localStorage.removeItem('currentUsername');
+      this.$store.dispatch('clearCurrentUsername');
       this.isAuthenticated = false;
       this.$router.push('/');
     },

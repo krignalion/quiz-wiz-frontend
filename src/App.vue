@@ -29,9 +29,9 @@ export default {
     }
   },
   created() {
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    if (currentUser) {
-      this.$store.dispatch('setCurrentUser', currentUser);
+    const currentUsername = localStorage.getItem('currentUsername');
+    if (currentUsername) {
+      this.$store.dispatch('setCurrentUsername', currentUsername);
     }
   }
 };
