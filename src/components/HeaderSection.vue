@@ -4,13 +4,13 @@
       <router-link to="/">{{$t('home')}}</router-link>
       <router-link to="/about-us">{{$t('about')}}</router-link>
       <router-link to="/user-profile">{{$t('user profile')}}</router-link>
-      <div v-if="!currentUsername">
+      <div v-if="!isAuthenticated">
         <router-link to="/user-authorization">{{$t('Authorization')}}</router-link>
         <span> | </span>
         <router-link to="/user-registration">{{$t('Registration')}}</router-link>
       </div>
-      <div v-if="currentUsername">
-        {{ currentUsername }}<button @click="logout">Logout</button>
+      <div v-if="isAuthenticated">
+        {{ currentUser.username }}<button @click="logout">Logout</button>
       </div>
     </nav>
   </div>
@@ -19,19 +19,20 @@
 
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapMutations } from 'vuex';
 
 export default {
   name: 'HeaderSection',
   computed: {
-    ...mapGetters(['currentUsername']),
+    ...mapGetters(['currentUser', 'isAuthenticated']),
   },
   methods: {
+    ...mapMutations('user', ['setIsAuthenticated']),
+    
     logout() {
       localStorage.removeItem('jwtToken');
-      localStorage.removeItem('currentUsername');
-      this.$store.dispatch('clearCurrentUsername');
-      this.isAuthenticated = false;
+      this.$store.dispatch('clearCurrentUser'); 
+      this.$store.commit('setIsAuthenticated', false); 
       this.$router.push('/');
     },
   }

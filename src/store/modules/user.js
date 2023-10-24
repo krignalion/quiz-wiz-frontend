@@ -1,27 +1,42 @@
 const state = {
-  currentUsername: null, 
+  currentUser: {
+    username: null,
+    email: null,
+  },
+  isAuthenticated: false,
 };
 
 const mutations = {
-  setCurrentUsername(state, username) {
-    state.currentUsername = username;
+  setCurrentUser(state, { username, email }) {
+    state.currentUser.username = username;
+    state.currentUser.email = email;
+    state.isAuthenticated = true;
   },
-  clearCurrentUsername(state) {
-    state.currentUsername = null;
+  clearCurrentUser(state) {
+    state.currentUser.username = null;
+    state.currentUser.email = null;
+    state.isAuthenticated = false;
+  },
+  setIsAuthenticated(state, isAuthenticated) {
+    state.isAuthenticated = isAuthenticated;
   },
 };
 
 const actions = {
-  setCurrentUsername({ commit }, username) { 
-    commit('setCurrentUsername', username);
+  setCurrentUser({ commit }, { username, email }) {
+    commit('setCurrentUser', { username, email });
   },
-  clearCurrentUsername({ commit }) {
-    commit('clearCurrentUsername');
+  clearCurrentUser({ commit }) {
+    commit('clearCurrentUser');
+  },
+  setIsAuthenticated({ commit }, isAuthenticated) {
+    commit('setIsAuthenticated', isAuthenticated);
   },
 };
 
 const getters = {
-  currentUsername: state => state.currentUsername, 
+  currentUser: (state) => state.currentUser,
+  isAuthenticated: (state) => state.isAuthenticated,
 };
 
 export default {

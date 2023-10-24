@@ -15,6 +15,7 @@
 
 <script>
 import axios from 'axios';
+import jwt_decode from 'jwt-decode';
 
 export default {
   data() {
@@ -24,16 +25,6 @@ export default {
       isAuthenticated: false,
       loginError: null,
     };
-  },
-  created() {
-    const jwtToken = localStorage.getItem('jwtToken');
-    if (jwtToken) {
-      this.isAuthenticated = true;
-      const currentUsername = localStorage.getItem('currentUsername');
-      if (currentUsername) {
-        this.$store.dispatch('setCurrentUsername', currentUsername);
-      }
-    }
   },
   methods: {
     login() {
@@ -49,13 +40,15 @@ export default {
           console.log('Login successful:', response.data);
           const token = response.data.access;
           localStorage.setItem('jwtToken', token);
-          this.isAuthenticated = true;
+
+          const decodedToken = jwt_decode(token);
+          const currentUsername = decodedToken.username;
+          const currentEmail = decodedToken.email;
+
+          this.$store.dispatch('setCurrentUser', { username: currentUsername, email: currentEmail });
+          this.$store.commit('setIsAuthenticated', true);
           this.loginError = null;
           this.$router.push('/');
-
-          const currentUsername = this.username; 
-          this.$store.dispatch('setCurrentUsername', currentUsername); 
-          localStorage.setItem('currentUsername', currentUsername);
         })
         .catch(error => {
           console.error('Login failed:', error.response ? error.response.data : error.message);
