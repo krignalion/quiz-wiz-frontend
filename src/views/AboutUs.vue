@@ -3,14 +3,17 @@
     <HeaderSection />
     <h1>About page</h1>
   </div>
+  <UsersList />
 </template>
 
 <script>
 import HeaderSection from '@/components/HeaderSection.vue';
+import UsersList from '@/components/UsersList.vue';
 
 export default {
   components: {
-    HeaderSection
+    HeaderSection,
+    UsersList
   }
 }
 </script>

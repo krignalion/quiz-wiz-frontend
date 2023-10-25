@@ -11,6 +11,7 @@
 <script>
 import UniversalModal from '@/components/ModalWindow.vue';
 import LanguageSelector from './components/LanguageSelector.vue';
+import jwt_decode from 'jwt-decode';
 
 export default {
   name: 'App',
@@ -20,23 +21,27 @@ export default {
   },
   data() {
     return {
-      isModalOpen: false
+      isModalOpen: false,
     };
   },
   methods: {
     closeModal() {
       this.isModalOpen = false;
-    }
+    },
   },
   created() {
-    const currentUsername = localStorage.getItem('currentUsername');
-    if (currentUsername) {
-      this.$store.dispatch('setCurrentUsername', currentUsername);
+    // Проверяем наличие JWT-токена
+    const jwtToken = localStorage.getItem('jwtToken');
+    if (jwtToken) {
+      // Декодируем JWT-токен и извлекаем данные
+      const decodedToken = jwt_decode(jwtToken);
+      const currentUsername = decodedToken.username;
+      const currentEmail = decodedToken.email;
+
+      // Сохраняем данные в состоянии хранилища Vuex
+      this.$store.dispatch('setCurrentUser', { username: currentUsername, email: currentEmail });
+      this.isAuthenticated = true;
     }
-  }
+  },
 };
 </script>
-
-<style>
-/* Add your global CSS styles here */
-</style>
