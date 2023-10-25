@@ -30,15 +30,12 @@ export default {
     },
   },
   created() {
-    // Проверяем наличие JWT-токена
     const jwtToken = localStorage.getItem('jwtToken');
     if (jwtToken) {
-      // Декодируем JWT-токен и извлекаем данные
       const decodedToken = jwt_decode(jwtToken);
       const currentUsername = decodedToken.username;
       const currentEmail = decodedToken.email;
 
-      // Сохраняем данные в состоянии хранилища Vuex
       this.$store.dispatch('setCurrentUser', { username: currentUsername, email: currentEmail });
       this.isAuthenticated = true;
     }

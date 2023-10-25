@@ -3,7 +3,7 @@ import userModule from '@/store/modules/user';
 
 const authRequiredPages = ['UserProfile', 'ListOfUsers', 'CompanyProfile', 'ListOfCompanies'];
 const guestOnlyPages = ['UserAuthorization', 'UserRegistration'];
-const publicPages = ['HomePage', 'AboutUs', 'TestVuex'];
+const publicPages = ['HomePage', 'AboutUs', 'TestVuex', 'CompanyRegister'];
 
 const generateRoutes = (pages,) => {
   return pages.map(page => {
