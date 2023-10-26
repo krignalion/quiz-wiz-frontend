@@ -44,8 +44,9 @@ export default {
           const decodedToken = jwt_decode(token);
           const currentUsername = decodedToken.username;
           const currentEmail = decodedToken.email;
+          const currentId = decodedToken.user_id;
 
-          this.$store.dispatch('setCurrentUser', { username: currentUsername, email: currentEmail });
+          this.$store.dispatch('setCurrentUser', {user_id: currentId, username: currentUsername, email: currentEmail });
           this.$store.commit('setIsAuthenticated', true);
           this.loginError = null;
           this.$router.push('/');

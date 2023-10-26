@@ -37,9 +37,10 @@ export default {
       const decodedToken = jwt_decode(jwtToken);
       const currentUsername = decodedToken.username;
       const currentEmail = decodedToken.email;
+      const currentId = decodedToken.user_id;
 
       // Сохраняем данные в состоянии хранилища Vuex
-      this.$store.dispatch('setCurrentUser', { username: currentUsername, email: currentEmail });
+      this.$store.dispatch('setCurrentUser', { user_id: currentId, username: currentUsername, email: currentEmail });
       this.isAuthenticated = true;
     }
   },

@@ -20,11 +20,10 @@ export default {
     };
   },
   mounted() {
-    // Call the backend health check endpoint
     axiosInstance.get('')
       .then(response => {
-        console.log('Response status:', response.status); // Response status
-        console.log('Response data:', response.data); // Data returned by the server
+        console.log('Response status:', response.status); 
+        console.log('Response data:', response.data); 
         this.isBackendHealthy = true;
       })
       .catch(error => {

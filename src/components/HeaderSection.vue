@@ -2,15 +2,17 @@
   <div class="header-section">
     <nav>
       <router-link to="/">{{$t('home')}}</router-link>
-      <router-link to="/about-us">{{$t('about')}}</router-link>
+      <router-link to="/list-of-users">{{$t('List of users')}}</router-link>
       <router-link to="/user-profile">{{$t('user profile')}}</router-link>
+      
       <div v-if="!isAuthenticated">
         <router-link to="/user-authorization">{{$t('Authorization')}}</router-link>
         <span> | </span>
         <router-link to="/user-registration">{{$t('Registration')}}</router-link>
       </div>
-      <div v-if="isAuthenticated">
-        {{ currentUser.username }}<button @click="logout">Logout</button>
+      
+      <div v-else>
+        {{ currentUser.username }} <button @click="logout">{{$t('Logout')}}</button>
       </div>
     </nav>
   </div>

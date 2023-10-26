@@ -1,16 +1,18 @@
 <template>
     <div>
       <HeaderSection />
-      <h1>User Profile</h1>
+      <UserProfile />
     </div>
   </template>
   
   <script>
   import HeaderSection from '@/components/HeaderSection.vue';
+  import UserProfile from '@/components/UserProfile.vue';
   
   export default {
     components: {
-      HeaderSection
+      HeaderSection,
+      UserProfile,
     }
   }
   </script>
