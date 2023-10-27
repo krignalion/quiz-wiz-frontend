@@ -4,11 +4,11 @@ import router from './router';
 import { createI18n } from 'vue-i18n';
 import messages from './locales';
 import store from './store/store.js';
-import axiosInstance from './services/axios-instance.js';
+import axiosInstance from './services/axiosInstance.js';
+
 
 const defaultLanguage = 'en';
 const savedLanguage = localStorage.getItem('language');
-
 const i18n = createI18n({
   legacy: false,
   locale: savedLanguage || defaultLanguage,

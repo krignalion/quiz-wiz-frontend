@@ -14,7 +14,6 @@
 </template>
 
 <script>
-import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 
 export default {
@@ -33,9 +32,9 @@ export default {
         password: this.password
       };
 
-      const apiUrl = `${process.env.API_BASE_URL}/auth/jwt/create/`;
+      const apiUrl = `/auth/jwt/create/`;
 
-      axios.post(apiUrl, payload)
+      this.$axios.post(apiUrl, payload)
         .then(response => {
           console.log('Login successful:', response.data);
           const token = response.data.access;
