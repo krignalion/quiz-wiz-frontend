@@ -11,27 +11,34 @@
 <script>
 import UniversalModal from '@/components/ModalWindow.vue';
 import LanguageSelector from './components/LanguageSelector.vue';
+import jwt_decode from 'jwt-decode';
 
 export default {
   name: 'App',
   components: {
     UniversalModal,
-    LanguageSelector
+    LanguageSelector,
   },
   data() {
     return {
-      isModalOpen: false
+      isModalOpen: false,
     };
   },
   methods: {
     closeModal() {
       this.isModalOpen = false;
+    },
+  },
+  created() {
+    const jwtToken = localStorage.getItem('jwtToken');
+    if (jwtToken) {
+      const decodedToken = jwt_decode(jwtToken);
+      const currentUsername = decodedToken.username;
+      const currentEmail = decodedToken.email;
+
+      this.$store.dispatch('setCurrentUser', { username: currentUsername, email: currentEmail });
+      this.isAuthenticated = true;
     }
-  }
+  },
 };
 </script>
-
-
-<style>
-/* Add your global CSS styles here */
-</style>
