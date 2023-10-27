@@ -93,7 +93,6 @@ export default {
       try {
         await this.$store.dispatch('fetchUserInfo', this.userId);
         this.error = null;
-        this.$store.dispatch('clearUserInfo'); 
       } catch (error) {
         this.error = error.message;
       }

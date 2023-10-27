@@ -46,6 +46,9 @@ const actions = {
       }
     }
   },
+  clearUserInfo({ commit }) {
+    commit('setUserInfo', null);
+  },
   async updateUserInfo({ commit }, updatedUserInfo) {
     try {
       const jwtToken = localStorage.getItem('jwtToken');
