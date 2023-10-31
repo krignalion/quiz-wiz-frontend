@@ -38,8 +38,6 @@
 </template>
 
 <script>
-import axios from 'axios';
-
 export default {
   data() {
     return {
@@ -94,9 +92,9 @@ export default {
         password: this.password      
       };
 
-      const apiUrl = process.env.API_BASE_URL + '/auth/users/';
+      const apiUrl = '/auth/users/';
 
-      axios.post(apiUrl, payload)
+      this.$axios.post(apiUrl, payload)
         .then(response => {
           console.log('Registration successful:', response.data);
           this.$router.push('/user-authorization');

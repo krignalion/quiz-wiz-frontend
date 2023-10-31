@@ -2,7 +2,7 @@
   <div class="header-section">
     <nav>
       <router-link to="/">{{$t('home')}}</router-link>
-      <router-link to="/about-us">{{$t('about')}}</router-link>
+      <router-link to="/list-of-users">{{$t('List of users')}}</router-link>
       <router-link to="/user-profile">{{$t('user profile')}}</router-link>
       
       <div v-if="!isAuthenticated">
