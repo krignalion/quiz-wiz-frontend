@@ -3,7 +3,7 @@ import userModule from '@/store/modules/user';
 
 const authRequiredPages = ['UserProfile', 'ListOfUsers', 'CompanyProfile', 'ListOfCompanies'];
 const guestOnlyPages = ['UserAuthorization', 'UserRegistration'];
-const publicPages = ['HomePage', 'AboutUs', 'TestVuex', 'CompanyRegister'];
+const publicPages = ['HomePage', 'AboutUs', 'TestVuex'];
 
 const generateRoutes = (pages,) => {
   return pages.map(page => {
@@ -30,7 +30,15 @@ const routes = [
   ...authRequiredRoutes,
   ...guestOnlyRoutes,
   ...publicRoutes,
-  { path: '/', component: () => import('@/views/HomePage.vue') }
+  { path: '/', component: () => import('@/views/HomePage.vue') },
+  {
+    path: '/company-profile/:company_id',
+    name: 'CompanyProfile',
+    component: () => import('@/views/CompanyProfile.vue'),
+    meta: {
+      requiresAuth: true,
+    },
+  },
 ];
 
 const router = createRouter({

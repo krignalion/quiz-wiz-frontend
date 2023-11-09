@@ -4,6 +4,7 @@
       <router-link to="/">{{$t('home')}}</router-link>
       <router-link to="/list-of-users">{{$t('List of users')}}</router-link>
       <router-link to="/user-profile">{{$t('user profile')}}</router-link>
+      <router-link to="/list-of-companies">{{$t('List of companies')}}</router-link>
       
       <div v-if="!isAuthenticated">
         <router-link to="/user-authorization">{{$t('Authorization')}}</router-link>
