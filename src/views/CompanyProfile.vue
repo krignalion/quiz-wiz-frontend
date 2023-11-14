@@ -11,16 +11,16 @@
     <div v-if="isEditing">
       <div>
 
-        <label for="editedCompanyNameInput">Company Name: </label>
-        <input id="editedCompanyNameInput" v-model="editedCompany.name" />
+        <label for="nameInput">Company Name: </label>
+        <input id="nameInput" v-model="editedCompany.name" />
       </div>
       <div>
-        <label for="editedCompanyDescriptionInput">Description: </label>
-        <input id="editedCompanyDescriptionInput" v-model="editedCompany.description" />
+        <label for="descriptionInput">Description: </label>
+        <input id="descriptionInput" v-model="editedCompany.description" />
       </div>
       <div>
         <label>
-          <input type="checkbox" v-model="editedCompany.is_visible" />
+          <input type="checkbox" v-model="editedCompany.isVisible" />
           Is Visible
         </label>
       </div>
@@ -49,7 +49,7 @@ export default {
       editedCompany: {
         name: '',
         description: '',
-        is_visible: true,
+        isVisible: true,
       },
     };
   },

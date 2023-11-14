@@ -26,16 +26,22 @@ export default {
     this.fetchCompanyList();
   },
   methods: {
-    async fetchCompanyList() {
+    setAuthorizationHeader() {
       const jwtToken = localStorage.getItem('jwtToken');
-
-      if (!jwtToken) {
+      if (jwtToken) {
+        return `JWT ${jwtToken}`;
+      } else {
         this.$router.push('/user-authorization');
-        return;
+        return null;
       }
+    },
+    async fetchCompanyList() {
+      const token = this.setAuthorizationHeader();
+      if (!token) return;
+
+      this.$axios.defaults.headers.common['Authorization'] = token;
 
       try {
-        this.$axios.defaults.headers.common['Authorization'] = `JWT ${jwtToken}`;
         const response = await this.$axios.get('/companies/');
         this.companies = response.data;
       } catch (error) {
@@ -48,7 +54,11 @@ export default {
     },
     goToCompany() {
       if (this.companyId) {
-        this.$router.push({ name: 'CompanyProfile', params: { company_id: this.companyId } });
+        const token = this.setAuthorizationHeader();
+        if (token) {
+          this.$axios.defaults.headers.common['Authorization'] = token;
+          this.$router.push({ name: 'CompanyProfile', params: { company_id: this.companyId } });
+        }
       }
     },
   },

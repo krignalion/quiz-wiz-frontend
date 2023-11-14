@@ -18,8 +18,8 @@
 
       <button type="submit">Create Company</button>
     </form>
-    <div v-if="createSuccess" style="color: green;">{{ createSuccess }}</div>
-    <div v-if="createError" style="color: red;">{{ createError }}</div>
+    <div v-if="isSuccess" style="color: green;">{{ isSuccess }}</div>
+    <div v-if="isError" style="color: red;">{{ isError }}</div>
   </div>
 </template>
 
@@ -30,8 +30,8 @@ export default {
       name: '',
       description: '',
       isVisible: true,
-      createError: null,
-      createSuccess: null,
+      isError: null,
+      isSuccess: null,
     };
   },
   methods: {
@@ -39,7 +39,7 @@ export default {
       const isValidToken = await this.checkTokenValidity();
 
       if (!isValidToken) {
-        this.createError = 'Your JWT token is not valid. Please log in again.';
+        this.isError = 'Your JWT token is not valid. Please log in again.';
         return;
       }
 
@@ -58,11 +58,11 @@ export default {
           this.name = '';
           this.description = '';
           this.isVisible = true;
-          this.createError = null;
-          this.createSuccess = 'Company created successfully!'; 
+          this.isError = null;
+          this.isSuccess = 'Company created successfully!'; 
         })  
         .catch(error => {
-          this.createError = 'Error creating company. Please try again.';
+          this.isError = 'Error creating company. Please try again.';
           console.error('Error creating company:', error);
         });
     },
