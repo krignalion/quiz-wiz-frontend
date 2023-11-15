@@ -1,7 +1,7 @@
 <template>
-  <div v-if="show" class="modal-shadow" @click.self="closeModal">
+  <div v-if="show" class="modal-shadow" @click.self="ononCloseModal">
     <div class="modal">
-      <div class="modal-close" @click="closeModal">
+      <div class="modal-close" @click="onCloseModal">
         <i class="fas fa-times"></i>
       </div>
       <slot name="title">
@@ -14,7 +14,7 @@
       </slot>
       <slot name="footer">
         <div class="modal-footer">
-          <button class="modal-footer__button" @click="closeModal">
+          <button class="modal-footer__button" @click="onCloseModal">
             Close
           </button>
         </div>
@@ -35,7 +35,7 @@
       };
     },
     methods: {
-      closeModal() {
+      onCloseModal() {
         this.show = false;
       }
     }

@@ -2,7 +2,7 @@
   <div id="app">
     <LanguageSelector />
     <router-view></router-view>
-    <universal-modal v-if="isModalOpen" @close="closeModal">
+    <universal-modal v-if="isModalOpen" @close="onCloseModal">
       <p>This is the content of the universal modal.</p>
     </universal-modal>
   </div>
@@ -25,7 +25,7 @@ export default {
     };
   },
   methods: {
-    closeModal() {
+    onCloseModal() {
       this.isModalOpen = false;
     },
   },

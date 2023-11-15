@@ -5,18 +5,18 @@
     <div v-if="company">
       <h2>{{ company.name }}</h2>
       <p>{{ company.description }}</p>
-      <button v-if="canEditCompany" @click="editCompany">Edit</button>
-      <button v-if="canDeleteCompany" @click="deleteCompany">Delete</button>
+      <button v-if="onEditCompany" @click="editCompany">Edit</button>
+      <button v-if="onDeleteCompany" @click="deleteCompany">Delete</button>
     </div>
     <div v-if="isEditing">
       <div>
 
-        <label for="nameInput">Company Name: </label>
-        <input id="nameInput" v-model="editedCompany.name" />
+        <label for="name">Company Name: </label>
+        <input id="name" v-model="editedCompany.name" />
       </div>
       <div>
-        <label for="descriptionInput">Description: </label>
-        <input id="descriptionInput" v-model="editedCompany.description" />
+        <label for="description">Description: </label>
+        <input id="description" v-model="editedCompany.description" />
       </div>
       <div>
         <label>
@@ -60,11 +60,11 @@ export default {
     currentUser() {
       return this.$store.getters.currentUser;
     },
-    canEditCompany() {
+    onEditCompany() {
 
       return this.company && this.currentUser && this.company.owner === this.currentUser.user_id;
     },
-    canDeleteCompany() {
+    onDeleteCompany() {
       return this.company && this.currentUser && this.company.owner === this.currentUser.user_id;
     },
   },

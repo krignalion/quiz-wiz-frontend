@@ -16,7 +16,7 @@
       <p>First Name: {{ userInfo.first_name }}</p>
       <p>Last Name: {{ userInfo.last_name }}</p>
       <button @click="editUserInfo">Edit profile</button>
-      <button v-if="canDeleteProfile" @click="deleteUserProfile">Delete profile</button>
+      <button v-if="onDeleteProfile" @click="deleteUserProfile">Delete profile</button>
     </div>
     <div v-else-if="userInfo && isEditing">
       <div>
@@ -78,7 +78,7 @@ export default {
     userInfo() {
       return this.$store.getters.getUserInfo;
     },
-    canDeleteProfile() {
+    onDeleteProfile() {
       return (
         this.$store.getters.isAuthenticated &&
         this.$store.getters.currentUser.user_id === this.userInfo.id
