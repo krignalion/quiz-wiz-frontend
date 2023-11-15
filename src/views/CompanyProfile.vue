@@ -5,8 +5,8 @@
     <div v-if="company">
       <h2>{{ company.name }}</h2>
       <p>{{ company.description }}</p>
-      <button v-if="onEditCompany" @click="editCompany">Edit</button>
-      <button v-if="onDeleteCompany" @click="deleteCompany">Delete</button>
+      <button v-if="canEditCompany" @click="onEditCompany">Edit</button>
+      <button v-if="canDeleteCompany" @click="onDeleteCompany">Delete</button>
     </div>
     <div v-if="isEditing">
       <div>
@@ -60,11 +60,11 @@ export default {
     currentUser() {
       return this.$store.getters.currentUser;
     },
-    onEditCompany() {
+    canEditCompany() {
 
       return this.company && this.currentUser && this.company.owner === this.currentUser.user_id;
     },
-    onDeleteCompany() {
+    canDeleteCompany() {
       return this.company && this.currentUser && this.company.owner === this.currentUser.user_id;
     },
   },
@@ -96,7 +96,7 @@ export default {
         }
       }
     },
-    editCompany() {
+    onEditCompany() {
       this.isEditing = true;
       this.editedCompany = { ...this.company };
     },
@@ -113,7 +113,7 @@ export default {
     cancelEdit() {
       this.isEditing = false;
     },
-    deleteCompany() {
+    onDeleteCompany() {
       if (confirm("Are you sure you want to delete this company?")) {
         const companyId = this.company.id;
 
