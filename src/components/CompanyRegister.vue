@@ -1,16 +1,25 @@
 <template>
   <div>
-    <h2>Create a New Company</h2>
     <form @submit.prevent="createCompany">
-      <label for="name">Company Name:</label>
-      <input v-model="name" type="text" id="name" required>
+      <div class="form-group">
+        <label for="name">Company Name:</label>
+        <input v-model="name" type="text" id="name" required>
+      </div>
 
-      <label for="description">Company Description:</label>
-      <textarea v-model="description" id="description" required></textarea>
+      <div class="form-group">
+        <label for="description">Company Description:</label>
+        <textarea v-model="description" id="description" required></textarea>
+      </div>
+
+      <div class="form-group">
+        <input v-model="isVisible" type="checkbox" id="isVisible">
+        <label for="isVisible">Visible</label>
+      </div>
 
       <button type="submit">Create Company</button>
     </form>
-    <div v-if="createError" style="color: red;">{{ createError }}</div>
+    <div v-if="isSuccess" style="color: green;">{{ isSuccess }}</div>
+    <div v-if="isError" style="color: red;">{{ isError }}</div>
   </div>
 </template>
 
@@ -20,7 +29,9 @@ export default {
     return {
       name: '',
       description: '',
-      createError: null,
+      isVisible: true,
+      isError: null,
+      isSuccess: null,
     };
   },
   methods: {
@@ -28,13 +39,14 @@ export default {
       const isValidToken = await this.checkTokenValidity();
 
       if (!isValidToken) {
-        this.createError = 'Your JWT token is not valid. Please log in again.';
+        this.isError = 'Your JWT token is not valid. Please log in again.';
         return;
       }
 
       const payload = {
         name: this.name,
         description: this.description,
+        is_visible: this.isVisible,
       };
 
       const jwtToken = localStorage.getItem('jwtToken');
@@ -45,9 +57,12 @@ export default {
           console.log('Company created:', response.data);
           this.name = '';
           this.description = '';
+          this.isVisible = true;
+          this.isError = null;
+          this.isSuccess = 'Company created successfully!'; 
         })  
         .catch(error => {
-          this.createError = 'Error creating company. Please try again.';
+          this.isError = 'Error creating company. Please try again.';
           console.error('Error creating company:', error);
         });
     },
@@ -72,6 +87,23 @@ export default {
 };
 </script>
 
-<style>
-/* Add your styles here */
+<style scoped>
+.form-group {
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+textarea,
+input {
+  padding: 5px;
+}
+.form-group input {
+  margin-right: 5px;
+}
 </style>

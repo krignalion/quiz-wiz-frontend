@@ -1,19 +1,19 @@
 <template>
   <div>
     <HeaderSection />
-    <h1>About page</h1>
   </div>
   <UsersList />
+  <CreateQuiz/>
 </template>
 
 <script>
 import HeaderSection from '@/components/HeaderSection.vue';
-import UsersList from '@/components/UsersList.vue';
+import CreateQuiz from "@/components/CreateQuiz.vue";
 
 export default {
   components: {
     HeaderSection,
-    UsersList
+    CreateQuiz
   }
 }
 </script>
