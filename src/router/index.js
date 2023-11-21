@@ -1,32 +1,67 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import HomePage from '@/views/HomePage.vue';
+import userModule from '@/store/modules/user';
 
-const requireComponent = require.context('@/views', true, /\.vue$/);
+const authRequiredPages = ['UserProfile', 'ListOfUsers', 'CompanyProfile', 'ListOfCompanies'];
+const guestOnlyPages = ['UserAuthorization', 'UserRegistration'];
+const publicPages = ['HomePage', 'AboutUs', 'TestVuex'];
 
-const routes = requireComponent.keys().map(fileName => {
-  const componentConfig = requireComponent(fileName);
-  const componentName = fileName
-    .split('/')
-    .pop()
-    .replace(/\.\w+$/, '');
+const generateRoutes = (pages,) => {
+  return pages.map(page => {
+    const formattedPath = page
+      .replace(/([a-z])([A-Z])/g, '$1-$2')
+      .toLowerCase();
+    const component = () => import(`@/views/${page}.vue`);
+    return {
+      path: `/${formattedPath}`,
+      component,
+      meta: {
+        requiresAuth: authRequiredPages.includes(page),
+        guestOnly: guestOnlyPages.includes(page)
+      }
+    };
+  });
+};
 
-// Convert PageName to page-name format
-  const formattedPath = componentName
-    .replace(/([a-z])([A-Z])/g, '$1-$2')
-    .toLowerCase();
+const authRequiredRoutes = generateRoutes(authRequiredPages, true);
+const guestOnlyRoutes = generateRoutes(guestOnlyPages, false);
+const publicRoutes = generateRoutes(publicPages);
 
-  return {
-    path: `/${formattedPath}`,
-    component: componentConfig.default || componentConfig
-  };
-});
-
-// Add a separate route for the main page
-routes.push({ path: '/', component: HomePage });
+const routes = [
+  ...authRequiredRoutes,
+  ...guestOnlyRoutes,
+  ...publicRoutes,
+  { path: '/', component: () => import('@/views/HomePage.vue') },
+  {
+    path: '/company-profile/:company_id',
+    name: 'CompanyProfile',
+    component: () => import('@/views/CompanyProfile.vue'),
+    meta: {
+      requiresAuth: true,
+    },
+  },
+];
 
 const router = createRouter({
   history: createWebHistory(),
   routes
+});
+
+router.beforeEach(async (to, from, next) => {
+  const jwtToken = localStorage.getItem('jwtToken');
+
+  if (to.meta.requiresAuth) {
+    if (!userModule.state.isAuthenticated || !jwtToken) {
+      return next('/user-authorization');
+    }
+  }
+
+  if (to.meta.guestOnly) {
+    if (userModule.state.isAuthenticated || jwtToken) {
+      return next('/');
+    }
+  }
+  
+  next();
 });
 
 export default router;

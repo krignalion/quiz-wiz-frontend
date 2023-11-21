@@ -1,17 +1,19 @@
 <template>
-    <div>
-      <HeaderSection />
-      <h1>User Authorization</h1>
-    </div>
-  </template>
-  
-  <script>
-  import HeaderSection from '@/components/HeaderSection.vue';
-  
-  export default {
-    components: {
-      HeaderSection
-    }
+  <div>
+    <HeaderSection />
+    <h1>User Authorization</h1>
+    <LoginForm />
+  </div>
+</template>
+
+<script>
+import HeaderSection from '@/components/HeaderSection.vue';
+import LoginForm from '@/components/LoginForm.vue'; 
+
+export default {
+  components: {
+    HeaderSection,
+    LoginForm
   }
-  </script>
-  
+}
+</script>
