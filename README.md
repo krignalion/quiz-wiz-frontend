@@ -37,8 +37,8 @@ Ensure you have the following installed on your machine:
 
 1. Clone this repository:
    ```bash
-   git clone https://github.com/krignalion/meduzzen-frontend.git
-   cd meduzzen-frontend
+   git clone https://github.com/krignalion/quiz-wiz-frontend.git
+   cd quiz-wiz-frontend
 
 2. docker build -t frontent-internship .
 
